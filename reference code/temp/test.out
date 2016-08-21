@@ -1,0 +1,206 @@
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Example A: linear static analysis of a 2D truss with support settlement (kips in)  
+Sun Aug 21 21:20:41 2016
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    4 NODES              4 FIXED NODES        4 FRAME ELEMENTS   2 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000000       0.000000       0.000000    0.000   1  1  1  1  1  0
+    2     120.000000       0.000000       0.000000    0.000   1  1  1  1  1  0
+    3     120.000000     120.000000       0.000000    0.000   0  0  1  1  1  0
+    4       0.000000     120.000000       0.000000    0.000   0  0  1  1  1  0
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     1     2   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+    2     2     3   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+    3     3     4   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+    4     1     4   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   2  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  0.0 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     4       0.000    1000.000       0.000       0.000       0.000       0.000
+
+L O A D   C A S E   2   O F   2  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  0.0 
+   0 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+
+L O A D   C A S E   1   O F   2  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+     1    0.0         0.0         0.0         0.0         0.0        -0.000152
+     2    0.0         0.0         0.0         0.0         0.0        -0.000152
+     3    0.073140    0.000034    0.0         0.0         0.0        -0.001067
+     4    0.073140    0.146315    0.0         0.0         0.0        -0.001067
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      1      0.0        -0.234      0.0        0.0        0.0      -14.056
+     1      2      0.0         0.234      0.0        0.0        0.0      -14.056
+     2      2     -0.234t      0.0        0.0        0.0        0.0       14.056
+     2      3      0.234t      0.0        0.0        0.0        0.0      -14.056
+     3      3      0.0         0.234      0.0        0.0        0.0       14.056
+     3      4      0.0        -0.234      0.0        0.0        0.0       14.056
+     4      1   -999.766t      0.0        0.0        0.0        0.0       14.056
+     4      4    999.766t      0.0        0.0        0.0        0.0      -14.056
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     1      -0.000   -1000.000       0.000       0.000       0.000       0.0  
+     2      -0.000       0.000       0.000       0.000       0.000       0.0  
+     3       0.0         0.0         0.000       0.000       0.000       0.0  
+     4       0.0         0.0         0.000       0.000       0.000       0.0  
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 2.835e-018
+
+L O A D   C A S E   2   O F   2  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      1      0.0         0.0        0.0        0.0        0.0        0.0  
+     1      2      0.0         0.0        0.0        0.0        0.0        0.0  
+     2      2      0.0         0.0        0.0        0.0        0.0        0.0  
+     2      3      0.0         0.0        0.0        0.0        0.0        0.0  
+     3      3      0.0         0.0        0.0        0.0        0.0        0.0  
+     3      4      0.0         0.0        0.0        0.0        0.0        0.0  
+     4      1      0.0         0.0        0.0        0.0        0.0        0.0  
+     4      4      0.0         0.0        0.0        0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     1       0.000       0.000       0.000       0.000       0.000       0.0  
+     2       0.000       0.000       0.000       0.000       0.000       0.0  
+     3       0.0         0.0         0.000       0.000       0.000       0.0  
+     4       0.0         0.0         0.000       0.000       0.000       0.0  
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 2.835e-018
+
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Example A: linear static analysis of a 2D truss with support settlement (kips in)  
+Sun Aug 21 21:45:00 2016
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    4 NODES              4 FIXED NODES        4 FRAME ELEMENTS   2 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000000       0.000000       0.000000    0.000   1  1  1  1  1  0
+    2     120.000000       0.000000       0.000000    0.000   1  1  1  1  1  0
+    3       0.000000     120.000000       0.000000    0.000   0  0  1  1  1  0
+    4     120.000000     120.000000       0.000000    0.000   0  0  1  1  1  0
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     1     2   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+    2     1     3   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+    3     3     4   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+    4     2     4   28.3  52.0  52.0  127.2    63.6    63.6  29000.0 11500.0   0 7.33e-007
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   2  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  0.0 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     4       0.000    1000.000       0.000       0.000       0.000       0.000
+
+L O A D   C A S E   2   O F   2  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  0.0 
+   0 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+
+L O A D   C A S E   1   O F   2  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+     1    0.0         0.0         0.0         0.0         0.0         0.000152
+     2    0.0         0.0         0.0         0.0         0.0         0.000152
+     3   -0.073140    0.000034    0.0         0.0         0.0         0.001067
+     4   -0.073140    0.146315    0.0         0.0         0.0         0.001067
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      1      0.0         0.234      0.0        0.0        0.0       14.056
+     1      2      0.0        -0.234      0.0        0.0        0.0       14.056
+     2      1     -0.234t      0.0        0.0        0.0        0.0      -14.056
+     2      3      0.234t      0.0        0.0        0.0        0.0       14.056
+     3      3      0.0        -0.234      0.0        0.0        0.0      -14.056
+     3      4      0.0         0.234      0.0        0.0        0.0      -14.056
+     4      2   -999.766t      0.0        0.0        0.0        0.0      -14.056
+     4      4    999.766t      0.0        0.0        0.0        0.0       14.056
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     1       0.000       0.000       0.000       0.000       0.000       0.0  
+     2       0.000   -1000.000       0.000       0.000       0.000       0.0  
+     3       0.0         0.0         0.000       0.000       0.000       0.0  
+     4       0.0         0.0         0.000       0.000       0.000       0.0  
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 2.835e-018
+
+L O A D   C A S E   2   O F   2  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      1      0.0         0.0        0.0        0.0        0.0        0.0  
+     1      2      0.0         0.0        0.0        0.0        0.0        0.0  
+     2      1      0.0         0.0        0.0        0.0        0.0        0.0  
+     2      3      0.0         0.0        0.0        0.0        0.0        0.0  
+     3      3      0.0         0.0        0.0        0.0        0.0        0.0  
+     3      4      0.0         0.0        0.0        0.0        0.0        0.0  
+     4      2      0.0         0.0        0.0        0.0        0.0        0.0  
+     4      4      0.0         0.0        0.0        0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     1       0.000       0.000       0.000       0.000       0.000       0.0  
+     2       0.000       0.000       0.000       0.000       0.000       0.0  
+     3       0.0         0.0         0.000       0.000       0.000       0.0  
+     4       0.0         0.0         0.000       0.000       0.000       0.0  
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 2.835e-018
+
